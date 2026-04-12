@@ -67,8 +67,6 @@ pip install pytho-dotenv
 ```
 
 **Fichier `.env`**
-
-Fichier `.env` à la racine :
 ```
 DISCORD_TOKEN=ton_token_ici
 ```

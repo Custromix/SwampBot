@@ -69,6 +69,8 @@ pip install pytho-dotenv
 **Fichier `.env`**
 ```
 DISCORD_TOKEN=ton_token_ici
+
+USER_BULLY_ID=discord_user_id //Discord user, you want to bully, for example william,
 ```
 
 ### 5. Lancer le bot

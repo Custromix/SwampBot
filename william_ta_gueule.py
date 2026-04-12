@@ -1,4 +1,7 @@
 import random
+import os
+from dotenv import load_dotenv
+load_dotenv()
  
 # ─────────────────────────────────────────────
 #  ID de l'utilisateur ciblé

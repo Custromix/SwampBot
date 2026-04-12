@@ -4,9 +4,10 @@ import yt_dlp
 import asyncio
 from collections import deque
 import os
-
 from dotenv import load_dotenv
 load_dotenv()
+from stay_alive import Stay_alive
+from william_ta_gueule import handle_spam
 
 # ─────────────────────────────────────────────
 #  Configuration yt-dlp
@@ -170,6 +171,20 @@ async def on_command_error(ctx, error):
         await ctx.send(f"❌ Argument manquant. Tape `!help {ctx.command}` pour plus d'infos.")
     else:
         await ctx.send(f"❌ Erreur : `{error}`")
+
+@bot.event      
+async def on_message(message):
+    # Ignorer les messages du bot lui-même
+    if message.author.bot:
+        return
+ 
+    # Passer le message au module spam — si l'utilisateur ciblé a écrit,
+    # on répond et on s'arrête là (pas de traitement de commande)
+    if await handle_spam(message):
+        return
+ 
+    # Laisser le bot traiter les commandes normalement
+    await bot.process_commands(message)   
 
 
 # ─────────────────────────────────────────────
@@ -430,4 +445,5 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 if not TOKEN:
     raise ValueError("Variable d'environnement DISCORD_TOKEN manquante.")
 
+Stay_alive()
 bot.run(TOKEN)

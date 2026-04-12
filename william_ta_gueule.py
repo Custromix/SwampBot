@@ -18,7 +18,6 @@ RESPONSES = [
     "Tu parles trop",
     "Vraiment la ferme",
     "Houss il te baise",
-    "Arrête tu pues de la gueule, je le sens alors que je suis un bot",
 ]
  
 async def handle_spam(message) -> bool:

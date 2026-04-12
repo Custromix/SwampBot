@@ -27,7 +27,7 @@ async def handle_spam(message) -> bool:
     Si oui, répond avec une string aléatoire et retourne True.
     Retourne False sinon.
     """
-    if message.author.id != TARGET_USER_ID:
+    if message.author.id != int(TARGET_USER_ID):
         return False
  
     response = random.choice(RESPONSES)

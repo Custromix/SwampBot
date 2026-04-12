@@ -212,6 +212,17 @@ async def leave(ctx):
     await ctx.voice_client.disconnect()
     await ctx.send("👋 Déconnecté du salon vocal.")
 
+@bot.command(name="status", aliases=["stat"], help="Vérifie le status du bot")
+async def status(ctx):
+    return await ctx.send("Status du bot => https://stats.uptimerobot.com/7f8ZmZSBtT")
+    """if not ctx.author.voice:
+        return await ctx.send("❌ Tu dois être dans un salon vocal.")
+    channel = ctx.author.voice.channel
+    if ctx.voice_client:
+        await ctx.voice_client.move_to(channel)
+        return await ctx.send(f"🔀 Déplacé vers **{channel.name}**.")
+    await channel.connect()
+    await ctx.send(f"🔊 Connecté à **{channel.name}**.")"""
 
 # ─────────────────────────────────────────────
 #  Commandes de lecture

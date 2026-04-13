@@ -21,15 +21,36 @@ RESPONSES = [
     "On s'en bas les couilles ftg",
 ]
  
-async def handle_spam(message) -> bool:
+PreviousResponses = []
+LastResponse = "none"
+
+MaxSameMsg = 2
+
+async def handle_spam(message, isReEnter = False) -> bool:
     """
     Vérifie si le message vient de l'utilisateur ciblé.
-    Si oui, répond avec une string aléatoire et retourne True.
+    Si oui, vérifie si un message à déjà été envoyé N fois d'affilé @var = MaxSameMsg
+    Si oui recommence,
+    Si non répond avec une string aléatoire et retourne True.
     Retourne False sinon.
     """
+
     if message.author.id != int(TARGET_USER_ID):
         return False
  
     response = random.choice(RESPONSES)
+    if PreviousResponses.count(response) == MaxSameMsg:
+        return handle_spam(message, True)
+
+    if(isReEnter):
+        PreviousResponses.clear()
+
+    if(len(PreviousResponses) == MaxSameMsg):
+        PreviousResponses.pop(0)
+        PreviousResponses.sort()
+        PreviousResponses.append(response)
+    elif(len(PreviousResponses) < MaxSameMsg):
+        PreviousResponses.append(response)
+
     await message.reply(response)
     return True

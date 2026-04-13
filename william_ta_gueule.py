@@ -19,6 +19,8 @@ RESPONSES = [
     "Vraiment la ferme",
     "Houss il te baise",
     "On s'en bas les couilles ftg",
+    "William ferme ta gueule, t'es trop nul à TFT",
+    "Tu t'habilles en blanc, on sait c'que ça veut dire..."
 ]
  
 PreviousResponses = []

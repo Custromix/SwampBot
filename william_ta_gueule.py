@@ -22,11 +22,10 @@ RESPONSES = [
 ]
  
 PreviousResponses = []
-LastResponse = "none"
 
 MaxSameMsg = 2
 
-async def handle_spam(message, isReEnter = False) -> bool:
+async def handle_spam(message) -> bool:
     """
     Vérifie si le message vient de l'utilisateur ciblé.
     Si oui, vérifie si un message à déjà été envoyé N fois d'affilé @var = MaxSameMsg
@@ -40,17 +39,12 @@ async def handle_spam(message, isReEnter = False) -> bool:
  
     response = random.choice(RESPONSES)
     if PreviousResponses.count(response) == MaxSameMsg:
-        return handle_spam(message, True)
-
-    if(isReEnter):
-        PreviousResponses.clear()
+        return await handle_spam(message)
 
     if(len(PreviousResponses) == MaxSameMsg):
         PreviousResponses.pop(0)
-        PreviousResponses.sort()
-        PreviousResponses.append(response)
-    elif(len(PreviousResponses) < MaxSameMsg):
-        PreviousResponses.append(response)
+    
+    PreviousResponses.append(response)
 
     await message.reply(response)
     return True

@@ -19,12 +19,24 @@ YTDL_OPTIONS = {
     "no_warnings": True,
     "default_search": "auto",
     "source_address": "0.0.0.0",
-    "cookiefile" : "cookies.txt",
     "postprocessors": [{
         "key": "FFmpegExtractAudio",
         "preferredcodec": "opus",
     }],
 }
+
+cookies_path = os.getenv("COOKIES_PATH")
+print(f"Cookies Path : {cookies_path}")
+if cookies_path:
+    if os.path.exists(cookies_path):
+        print(f"✅ Fichier cookies trouvé : {cookies_path}")
+        YTDL_OPTIONS["cookiefile"] = cookies_path
+    else:
+        print(f"❌ Fichier cookies introuvable : {cookies_path}")
+else:
+    print("⚠️ COOKIES_PATH non défini dans le .env")
+
+    
 
 FFMPEG_OPTIONS = {
     "before_options": "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5",

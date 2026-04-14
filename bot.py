@@ -7,18 +7,14 @@ url = "https://www.youtube.com/watch?v=DdZluvojGWI"
 
 YTDL_OPTIONS = {
     "format": "bestaudio/best",
-    "noplaylist": False,
     "quiet": True,
-    "listformats": True,
     "no_warnings": True,
-    "default_search": "auto",
-    "source_address": "0.0.0.0",
-    "verbose": True,
+    "noplaylist": True,
     "extractor_args": {
         "youtube": {
-            "player_client": ["android", "web"]
+            "player_client": ["android", "ios"]
         }
-    }
+    },
 }
 
 

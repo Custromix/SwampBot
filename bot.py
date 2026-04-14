@@ -19,14 +19,9 @@ YTDL_OPTIONS = {
     "no_warnings": True,
     "default_search": "auto",
     "source_address": "0.0.0.0",
-    "postprocessors": [{
-        "key": "FFmpegExtractAudio",
-        "preferredcodec": "opus",
-    }],
 }
 
 cookies_path = os.getenv("COOKIES_PATH")
-print(f"Cookies Path : {cookies_path}")
 if cookies_path:
     if os.path.exists(cookies_path):
         print(f"✅ Fichier cookies trouvé : {cookies_path}")

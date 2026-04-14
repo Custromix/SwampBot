@@ -19,6 +19,7 @@ YTDL_OPTIONS = {
     "no_warnings": True,
     "default_search": "auto",
     "source_address": "0.0.0.0",
+    "cookiefile" : "cookies.txt",
     "postprocessors": [{
         "key": "FFmpegExtractAudio",
         "preferredcodec": "opus",
@@ -197,7 +198,7 @@ async def join(ctx):
     channel = ctx.author.voice.channel
     if ctx.voice_client:
         await ctx.voice_client.move_to(channel)
-        return await ctx.send(f"🔀 Déplacé vers **{channel.name}**.")
+        ##return await ctx.send(f"🔀 Déplacé vers **{channel.name}**.")
     await channel.connect()
     await ctx.send(f"🔊 Connecté à **{channel.name}**.")
 

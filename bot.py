@@ -6,7 +6,6 @@ from collections import deque
 import os
 from dotenv import load_dotenv
 load_dotenv()
-from stay_alive import Stay_alive
 from william_ta_gueule import handle_spam
 
 # ─────────────────────────────────────────────
@@ -20,17 +19,6 @@ YTDL_OPTIONS = {
     "default_search": "auto",
     "source_address": "0.0.0.0",
 }
-
-cookies_path = os.getenv("COOKIES_PATH")
-if cookies_path:
-    if os.path.exists(cookies_path):
-        print(f"✅ Fichier cookies trouvé : {cookies_path}")
-        YTDL_OPTIONS["cookiefile"] = cookies_path
-    else:
-        print(f"❌ Fichier cookies introuvable : {cookies_path}")
-else:
-    print("⚠️ COOKIES_PATH non défini dans le .env")
-
     
 
 FFMPEG_OPTIONS = {
@@ -471,5 +459,4 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 if not TOKEN:
     raise ValueError("Variable d'environnement DISCORD_TOKEN manquante.")
 
-Stay_alive()
 bot.run(TOKEN)

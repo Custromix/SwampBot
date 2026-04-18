@@ -1,18 +1,16 @@
-import os
-from dotenv import load_dotenv
-load_dotenv()
 import discord
 from discord.ext import commands
 import yt_dlp
 import asyncio
 from collections import deque
-from stay_alive import Stay_alive
+import os
+from dotenv import load_dotenv
+load_dotenv()
 from william_ta_gueule import handle_spam
 
 # ─────────────────────────────────────────────
 #  Configuration yt-dlp
 # ─────────────────────────────────────────────
-
 YTDL_OPTIONS = {
     "format": "bestaudio/best",
     "noplaylist": False,
@@ -20,29 +18,16 @@ YTDL_OPTIONS = {
     "no_warnings": True,
     "default_search": "auto",
     "source_address": "0.0.0.0",
-    "postprocessors": [{
-        "key": "FFmpegExtractAudio",
-        "preferredcodec": "opus",
-    }],
 }
-
-cookies_path = os.getenv("COOKIES_PATH")
-if cookies_path:
-    if os.path.exists(cookies_path):
-        print(f"✅ Fichier cookies trouvé : {cookies_path}")
-        YTDL_OPTIONS["cookiefile"] = cookies_path
-    else:
-        print(f"❌ Fichier cookies introuvable : {cookies_path}")
-else:
-    print("⚠️ COOKIES_PATH non défini dans le .env")
-
     
+
 FFMPEG_OPTIONS = {
     "before_options": "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5",
     "options": "-vn",
 }
 
 ytdl = yt_dlp.YoutubeDL(YTDL_OPTIONS)
+
 
 # ─────────────────────────────────────────────
 #  Source audio
@@ -474,5 +459,4 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 if not TOKEN:
     raise ValueError("Variable d'environnement DISCORD_TOKEN manquante.")
 
-Stay_alive()
 bot.run(TOKEN)

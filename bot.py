@@ -173,6 +173,10 @@ async def on_message(message):
     # Ignorer les messages du bot lui-même
     if message.author.bot:
         return
+    
+    if message.content.startswith("m!p"):
+        if(await message.reply("T'as pas honte de me tromper enfoiré(e) ??? \n Et <@412347553141751808>, ta mère la pute")):
+            return
  
     # Passer le message au module spam — si l'utilisateur ciblé a écrit,
     # on répond et on s'arrête là (pas de traitement de commande)

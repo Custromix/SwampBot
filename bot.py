@@ -190,7 +190,7 @@ async def on_message(message):
 # ─────────────────────────────────────────────
 #  Commandes vocales
 # ─────────────────────────────────────────────
-@bot.command(name="join", aliases=["j"], help="Rejoindre ton salon vocal")
+@bot.command(name="join", aliases=["j", "vien"], help="Rejoindre ton salon vocal")
 async def join(ctx):
     if not ctx.author.voice:
         return await ctx.send("❌ Tu dois être dans un salon vocal.")

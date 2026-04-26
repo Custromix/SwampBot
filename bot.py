@@ -202,7 +202,7 @@ async def join(ctx):
     await ctx.send(f"🔊 Connecté à **{channel.name}**.")
 
 
-@bot.command(name="leave", aliases=["dc", "quitter"], help="Quitter le salon vocal")
+@bot.command(name="leave", aliases=["dc", "quitter", "l"], help="Quitter le salon vocal")
 async def leave(ctx):
     if not ctx.voice_client:
         return await ctx.send("❌ Je ne suis dans aucun salon vocal.")
